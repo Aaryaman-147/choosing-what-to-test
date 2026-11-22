@@ -12,14 +12,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT.parent))
+sys.path.insert(0, str(ROOT))
 
 import numpy as np
 
-from sm03.src import data, features
-from sm03.src.oracle import RevealViolation, build_oracle
-from sm03.src.policies import POLICY_LADDER, policy_by_name
-from sm03.src.simulate import curves_frame, results_frame, run_seeds
+from src import data, features
+from src.oracle import RevealViolation, build_oracle
+from src.policies import POLICY_LADDER, policy_by_name
+from src.simulate import curves_frame, results_frame, run_seeds
 
 SOURCE = ROOT / "data" / "bace.csv"
 

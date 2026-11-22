@@ -20,15 +20,15 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT.parent))
+sys.path.insert(0, str(ROOT))
 
 import numpy as np
 import pandas as pd
 from scipy import stats
 
-from sm03.src import data, features
-from sm03.src.policies import policy_by_name
-from sm03.src.simulate import run_seeds
+from src import data, features
+from src.policies import policy_by_name
+from src.simulate import run_seeds
 
 CONTENDERS = ("random", "uncertainty", "greedy", "ucb_b05", "greedy_diverse_l05", "ucb_diverse_b05_l03")
 SELECTION_SEEDS = tuple(range(42, 52))  # 10 seeds, validation only
@@ -124,5 +124,5 @@ def main(source: str, starter_dir: str | None = None) -> None:
 
 
 if __name__ == "__main__":
-    src = sys.argv[1] if len(sys.argv) > 1 else str(ROOT.parent / "bace_raw" / "bace.csv")
+    src = sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "data" / "bace.csv")
     main(src, sys.argv[2] if len(sys.argv) > 2 else None)

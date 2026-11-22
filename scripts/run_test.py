@@ -24,16 +24,16 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT.parent))
+sys.path.insert(0, str(ROOT))
 
 import numpy as np
 import pandas as pd
 
-from sm03.src import data, features
-from sm03.src.features import max_similarity_to_set, mean_pairwise_similarity
-from sm03.src.models import ForestSurrogate
-from sm03.src.policies import policy_by_name
-from sm03.src.simulate import curves_frame, results_frame, run_seeds
+from src import data, features
+from src.features import max_similarity_to_set, mean_pairwise_similarity
+from src.models import ForestSurrogate
+from src.policies import policy_by_name
+from src.simulate import curves_frame, results_frame, run_seeds
 
 SEEDS = (42, 43, 44)
 OUT = ROOT / "outputs"
@@ -288,5 +288,5 @@ def main(source: str, starter_dir: str | None = None) -> None:
 
 
 if __name__ == "__main__":
-    src = sys.argv[1] if len(sys.argv) > 1 else str(ROOT.parent / "bace_raw" / "bace.csv")
+    src = sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "data" / "bace.csv")
     main(src, sys.argv[2] if len(sys.argv) > 2 else None)
