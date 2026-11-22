@@ -1,0 +1,103 @@
+{
+  "frozen_at_utc": "2026-11-22T05:45:55Z",
+  "selected_policy": {
+    "name": "greedy_diverse_l05",
+    "beta": 0.0,
+    "diversity_lambda": 0.5,
+    "use_entropy": false,
+    "random_state": 0
+  },
+  "selected_on": "validation pool only",
+  "validation_mean_acquired": 64.33333333333333,
+  "validation_random_baseline": 40.0,
+  "lift_over_random": 1.6083333333333332,
+  "pool_provenance": "LOCAL SCAFFOLD FALLBACK \u2014 dry-run only, not the challenge partition",
+  "n_estimators": 500,
+  "environment": {
+    "timestamp_utc": "2026-11-22T05:45:55Z",
+    "python": "3.14.0",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "rdkit": "2026.09.2",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "git_head": null,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "ranking": [
+    {
+      "policy": "greedy_diverse_l05",
+      "mean": 64.33333333333333,
+      "std": 2.081665999466131,
+      "min": 62,
+      "max": 66
+    },
+    {
+      "policy": "ucb_b10",
+      "mean": 63.333333333333336,
+      "std": 8.020806277010644,
+      "min": 55,
+      "max": 71
+    },
+    {
+      "policy": "ucb_diverse_b10_l05",
+      "mean": 63.0,
+      "std": 2.6457513110645907,
+      "min": 60,
+      "max": 65
+    },
+    {
+      "policy": "ucb_diverse_b05_l03",
+      "mean": 62.666666666666664,
+      "std": 7.094598884597587,
+      "min": 55,
+      "max": 69
+    },
+    {
+      "policy": "greedy_diverse_l03",
+      "mean": 62.333333333333336,
+      "std": 4.509249752822895,
+      "min": 58,
+      "max": 67
+    },
+    {
+      "policy": "greedy",
+      "mean": 61.666666666666664,
+      "std": 8.736894948054104,
+      "min": 52,
+      "max": 69
+    },
+    {
+      "policy": "ucb_b05",
+      "mean": 61.333333333333336,
+      "std": 7.3711147958319945,
+      "min": 53,
+      "max": 67
+    },
+    {
+      "policy": "ucb_diverse_b05_l05",
+      "mean": 61.0,
+      "std": 5.196152422706632,
+      "min": 55,
+      "max": 64
+    },
+    {
+      "policy": "uncertainty",
+      "mean": 48.666666666666664,
+      "std": 5.131601439446883,
+      "min": 43,
+      "max": 53
+    },
+    {
+      "policy": "random",
+      "mean": 40.0,
+      "std": 2.6457513110645907,
+      "min": 37,
+      "max": 42
+    }
+  ]
+}

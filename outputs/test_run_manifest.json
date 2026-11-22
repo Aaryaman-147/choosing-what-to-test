@@ -1,0 +1,32 @@
+{
+  "frozen_policy": {
+    "name": "ucb_diverse_b05_l03",
+    "beta": 0.5,
+    "diversity_lambda": 0.3,
+    "use_entropy": false,
+    "random_state": 0
+  },
+  "baselines": [
+    "random",
+    "greedy"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "pool_provenance": "LOCAL SCAFFOLD FALLBACK \u2014 dry-run only, not the challenge partition",
+  "test_pool_size": 375,
+  "test_pool_actives": 155,
+  "base_rate": 0.41333333333333333,
+  "budget": {
+    "initial": 40,
+    "batches": 5,
+    "batch_size": 20
+  },
+  "mean_acquired": {
+    "ucb_diverse_b05_l03": 75.0,
+    "random": 39.333333333333336,
+    "greedy": 70.0
+  }
+}
