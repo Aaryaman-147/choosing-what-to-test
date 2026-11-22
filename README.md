@@ -108,8 +108,7 @@ Three design choices worth naming:
 
 ## Reproducing
 
-Requires Python 3.10+. Fetch the dataset first (not redistributed here — see
-`data/README.md` for the URL and checksums), then from the directory **above**
+Requires Python 3.10+. Fetch the dataset first (base.csv for the URL and checksums), then from the directory **above**
 this one:
 
 ```bash
