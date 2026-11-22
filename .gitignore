@@ -1,0 +1,33 @@
+# Never commit credentials. The SCI config and env carry Boltzmann and
+# NVIDIA API keys.
+.env
+.env.*
+!.env.example
+auth.json
+*.key
+*.pem
+secrets*
+.sci/
+
+# Data — not redistributed. See data/README.md for the source and checksum.
+*.csv
+!outputs/*.csv
+!data/README.md
+bace_raw/
+data/*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
