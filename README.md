@@ -113,10 +113,10 @@ this one:
 
 ```bash
 pip install -r requirements.txt
-python -I scripts/smoke_test.py                       # protocol guards
-python -I scripts/sweep_validation.py data/bace.csv   # 10 policies, 3 seeds
-python -I scripts/resolve_tie.py      data/bace.csv   # contenders, 10 seeds
-python -I scripts/run_test.py         data/bace.csv   # frozen policy on test
+python -I scripts/smoke_test.py                      # protocol guards
+python -I scripts/sweep_validation.py data/bace.csv  # 10 policies, 3 seeds
+python -I scripts/resolve_tie.py      data/bace.csv  # contenders, 10 seeds
+python -I scripts/run_test.py         data/bace.csv  # frozen policy on test
 python -I scripts/make_figures.py
 ```
 
