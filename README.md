@@ -132,9 +132,6 @@ Python 3.14 in a clean venv; a Python 3.13 run on the same machine gave 73.0 in
 place of 75.0, with every ranking and significance conclusion unchanged. The *ranking* and the *significance conclusions* are what
 must reproduce, not the third significant figure.
 
-`RUNBOOK.md` has the Agent Scientist prompt sequence used to drive the audit, the
-runs and the interpretation.
-
 ## Limitations, stated plainly
 
 - **This is a retrospective simulation on published activity data, not
