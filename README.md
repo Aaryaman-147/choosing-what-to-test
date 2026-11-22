@@ -18,8 +18,8 @@ tested, averaged over the prescribed seeds 42/43/44:
 
 | policy | actives acquired per 100 tested | sd |
 |---|---|---|
-| **UCB + diversity** (frozen before testing) | **73.0** | 2.65 |
-| greedy exploitation | 70.0 | 3.00 |
+| **UCB + diversity** (frozen before testing) | **75.0** | 2.00 |
+| greedy exploitation | 70.0 | 4.36 |
 | random selection | 39.3 | 4.93 |
 
 **1.9× better than testing at random**, and it holds across the whole campaign,
@@ -27,8 +27,8 @@ not just at the end:
 
 | molecules tested | 40 | 60 | 80 | 100 | 120 | 140 |
 |---|---|---|---|---|---|---|
-| UCB + diversity | 15.3 | 32.0 | 48.3 | 64.3 | 79.0 | **88.3** |
-| greedy | 15.3 | 34.3 | 47.3 | 63.7 | 73.3 | 85.3 |
+| UCB + diversity | 15.3 | 32.3 | 47.7 | 64.0 | 76.7 | **90.3** |
+| greedy | 15.3 | 34.3 | 46.7 | 62.0 | 73.0 | 85.3 |
 | random | 15.3 | 23.3 | 32.3 | 40.0 | 47.0 | 54.7 |
 
 ## The finding we think matters more
@@ -39,35 +39,34 @@ exploitation-driven policies are **indistinguishable from each other**:
 
 | policy | acquired (10 seeds) | ±sem | scaffolds per batch | paired *t* vs greedy |
 |---|---|---|---|---|
-| UCB | 63.1 | 1.59 | 17.2 | p = 0.45 |
-| greedy | 62.5 | 1.13 | 17.1 | — |
-| **UCB + diversity** (frozen) | 61.6 | 1.06 | **18.5** | p = 0.31 |
-| greedy + diversity | 60.9 | 0.87 | **18.9** | p = 0.21 |
-| uncertainty only | 48.9 | 1.06 | 17.8 | p < 0.001 |
+| **UCB + diversity** (frozen) | 62.6 | 1.12 | **18.4** | p = 0.36 |
+| UCB | 62.6 | 1.21 | 17.2 | p = 0.33 |
+| greedy + diversity | 61.8 | 0.96 | **18.9** | p = 0.84 |
+| greedy | 61.6 | 1.30 | 17.2 | — |
+| uncertainty only | 47.8 | 1.25 | 17.9 | p < 0.001 |
 | random | 38.8 | 1.27 | 19.4 | p < 0.001 |
 
-Note what this does and does not say. The frozen policy is not the highest mean
-on validation — UCB is, by 1.5 actives, which the paired test says is noise. The
-sophistication **bought no yield**. What it bought was **1.4 more distinct
-Bemis–Murcko scaffolds per 20-molecule batch at no significant cost**, and on the
-test pool that gap widened to **17.1 scaffolds against greedy's 15.0**. Free
-diversity is worth taking. That is a different and much weaker claim than "our
-method wins", and it is the one the data supports.
+Note what this does and does not say. The frozen policy shares the top mean with
+plain UCB, and sits 1.0 above greedy — which the paired test calls noise
+(p = 0.36). The sophistication **bought no yield**. What it bought was **1.2 more
+distinct Bemis–Murcko scaffolds per 20-molecule batch at no measurable cost**, and
+on the test pool that gap widened to **17.1 scaffolds against greedy's 14.9**.
+Free diversity is worth taking. That is a different and much weaker claim than
+"our method wins", and it is the one the data supports.
 
 Note also where uncertainty-only lands. That is essentially the acquisition rule
 of Wen, Li, Xiang & Reker (*Digital Discovery* 2023, **2**, 1134), who select the
 molecule nearest the decision boundary and show it beats training on full data.
-It is 13.6 actives behind greedy here, p < 0.001. Not a contradiction — they
+It is 13.8 actives behind greedy here, p < 0.001. Not a contradiction — they
 optimise **model performance**, this task scores **discovery yield**, and the
 optimal acquisition rule differs.
 
 ## A third thing
 
 Ranking our final 20 recommendations purely on predicted activity returned only
-**12 distinct scaffolds across 20 slots** — the model was quietly recommending
-near-duplicates and would have wasted nearly half the testing capacity.
-Filtering at Tanimoto 0.70 brings it to 18/20, and drops mean pairwise
-similarity from 0.227 to 0.171.
+**17 distinct scaffolds across 20 slots** — the model was quietly recommending
+near-duplicates of compounds already tested. Filtering at Tanimoto 0.70 brings it
+to 20/20 and drops mean pairwise similarity from 0.246 to 0.200.
 
 ![discovery curves and the yield/diversity trade-off](outputs/sm03_figure.png)
 
@@ -128,8 +127,9 @@ environment problem below.
 
 **Numbers will shift by a few actives across environments.** Scaffold perception
 and the random forest both depend on RDKit and scikit-learn versions, and the
-scaffold grouping determines the pool split. The tables above were produced on
-Python 3.13 / Windows. The *ranking* and the *significance conclusions* are what
+scaffold grouping determines the pool split. The tables above were produced by Agent Scientist on
+Python 3.14 in a clean venv; a Python 3.13 run on the same machine gave 73.0 in
+place of 75.0, with every ranking and significance conclusion unchanged. The *ranking* and the *significance conclusions* are what
 must reproduce, not the third significant figure.
 
 `RUNBOOK.md` has the Agent Scientist prompt sequence used to drive the audit, the
@@ -144,11 +144,11 @@ runs and the interpretation.
   reported with their nearest-labelled-neighbour Tanimoto so a reader can see
   which rest on extrapolation. In the reported run, all 20 fall inside the
   applicability domain.
-- **The frozen policy was not the validation winner.** It was selected on the
-  three prescribed seeds, then found statistically tied with three alternatives
-  over ten seeds, and kept for its diversity advantage rather than its mean. It
-  happened to come out 3 actives ahead on test; with three seeds, that gap is
-  itself inside the noise.
+- **The frozen policy was not chosen because it won.** On the three prescribed
+  seeds a different variant led; the freeze rests on the ten-seed tiebreak, where
+  `ucb_diverse_b05_l03` shares the top mean and carries the best scaffold
+  diversity of the four tied policies. It came out 5 actives ahead of greedy on
+  test, which with three seeds is itself inside the noise.
 - **The pool partition is ours, not the organisers'.** The brief specifies
   scaffold-separated pools of 822/316/375 supplied in `participant_starters/SM03`.
   That folder is not in the Agent Scientist repository, the Discovery Suite or
