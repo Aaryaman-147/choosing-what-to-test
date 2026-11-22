@@ -112,12 +112,12 @@ Requires Python 3.10+. Fetch the dataset first (base.csv for the URL and checksu
 this one:
 
 ```bash
-pip install -r sm03/requirements.txt
-python -I sm03/scripts/smoke_test.py                       # protocol guards
-python -I sm03/scripts/sweep_validation.py sm03/data/bace.csv
-python -I sm03/scripts/resolve_tie.py      sm03/data/bace.csv
-python -I sm03/scripts/run_test.py         sm03/data/bace.csv
-python -I sm03/scripts/make_figures.py
+pip install -r requirements.txt
+python -I scripts/smoke_test.py                       # protocol guards
+python -I scripts/sweep_validation.py sm03/data/bace.csv
+python -I scripts/resolve_tie.py      sm03/data/bace.csv
+python -I scripts/run_test.py         sm03/data/bace.csv
+python -I scripts/make_figures.py
 ```
 
 Run `smoke_test.py` first: it asserts that each of the six protocol violations is
