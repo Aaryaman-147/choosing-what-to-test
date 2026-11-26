@@ -166,7 +166,9 @@ must reproduce, not the third significant figure.
 - Subramanian et al., *J. Chem. Inf. Model.* 2016 — the BACE1 dataset
 - Wu et al., *Chem. Sci.* 2018, **9**, 513 — MoleculeNet
 - Wen, Li, Xiang & Reker, *Digital Discovery* 2023, **2**, 1134 — active-learning
-  subsampling for molecular ML
+  subsampling for molecular ML 
+    -Srinivas, Krause, Kakade, Seeger. Gaussian process optimization in the bandit setting:
+    no regret and experimental design. ICML 2010 (GP-UCB).
 
 ## License
 
